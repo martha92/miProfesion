@@ -14,17 +14,12 @@ import CoreLocation
 import CoreMotion
 
 
-class ViewController: UIViewController{ //GPPSignInDelegate
+class ViewController: UIViewController, GPPSignInDelegate { //
 
     var signIn: GPPSignIn?
     override func viewDidLoad() {
         super.viewDidLoad()
-    /*    signIn = GPPSignIn.sharedInstance()
-        signIn?.shouldFetchGooglePlusUser = true
-        signIn?.clientID = "993209742773-tpo92j7r26jtfkn86koje2ab86iegfhn.apps.googleusercontent.com"
-        signIn?.scopes = [kGTLAuthScopePlusLogin]
-        signIn?.delegate = self;
-        signIn?.authenticate() */
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -35,9 +30,15 @@ class ViewController: UIViewController{ //GPPSignInDelegate
     
     @IBAction func btnClick(sender: UIButton) {
         
+        signIn = GPPSignIn.sharedInstance()
+        signIn?.shouldFetchGooglePlusUser = true
+        signIn?.clientID = "993209742773-tpo92j7r26jtfkn86koje2ab86iegfhn.apps.googleusercontent.com"
+        signIn?.scopes = [kGTLAuthScopePlusLogin]
+        signIn?.delegate = self;
+        signIn?.authenticate()
     }
     
-    /*MARK: G+
+    //MARK: G+
     
     func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
         println(auth)
@@ -45,7 +46,7 @@ class ViewController: UIViewController{ //GPPSignInDelegate
     
     func didDisconnectWithError(error: NSError!) {
         
-    }*/
+    }
     
 
 }
