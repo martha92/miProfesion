@@ -9,7 +9,7 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    var areas = ["dibujo", "matematicas", "musica", "arte", "electronica", "medicina", "quimica"]
+    var areas = ["Dibujo", "Universidad Virtual", "Innovación", "Deportes", "Rectoría"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,5 +94,11 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let vistaDetalle = self.storyboard?.instantiateViewControllerWithIdentifier("ViewControllerDetalle") as ViewControllerDetalle
+        vistaDetalle.index = indexPath.row
+        self.navigationController?.pushViewController(vistaDetalle, animated: true)
+        
+    }
 
 }
