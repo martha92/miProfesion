@@ -44,7 +44,6 @@ class TableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
         cell.textLabel?.text = areas[indexPath.row]
-        // Configure the cell...
 
         return cell
     }
@@ -95,6 +94,7 @@ class TableViewController: UITableViewController {
     }
     */
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let storyboard = self.storyboard;
         let vistaDetalle = self.storyboard?.instantiateViewControllerWithIdentifier("ViewControllerDetalle") as ViewControllerDetalle
         vistaDetalle.index = indexPath.row
         self.navigationController?.pushViewController(vistaDetalle, animated: true)
