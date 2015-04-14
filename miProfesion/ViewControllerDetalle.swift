@@ -65,6 +65,8 @@ class ViewControllerDetalle: UIViewController, CLLocationManagerDelegate {
 
     func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
         println("Entered Region \(region.identifier)")
+        var alert = UIAlertController(title: "Bienvenido",
+            message: "Biblioteca se fundó en 1956", preferredStyle: UIAlertControllerStyle.Alert)
 
     }
     
