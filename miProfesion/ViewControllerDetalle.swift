@@ -8,8 +8,14 @@
 
 import UIKit
 
-class ViewControllerDetalle: UIViewController {
+class ViewControllerDetalle: UIViewController, CLLocationManagerDelegate {
     var index : Int? = nil
+    
+    //definir la region beacon
+    let regionBeacon:CLBeaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D"), identifier: "Beacon")
+    
+    let locationManager = CLLocationManager()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,22 +43,33 @@ class ViewControllerDetalle: UIViewController {
 
 
         // Do any additional setup after loading the view.
+        if locationManager.respondsToSelector("requestAlwaysAuthorization") {
+            locationManager.requestAlwaysAuthorization()
+        }
+        
+        locationManager.delegate = self;
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.startMonitoringForRegion(regionBeacon)
+        locationManager.startRangingBeaconsInRegion(regionBeacon)
+        locationManager.startUpdatingLocation()
+        
+        self.regionBeacon.notifyOnEntry=true;
+        self.regionBeacon.notifyOnExit=true;
+        self.regionBeacon.notifyEntryStateOnDisplay=true;
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    /*
-    // MARK: - Navigation
+    func locationManager(manager: CLLocationManager!, didEnterRegion region: CLRegion!) {
+        println("Entered Region \(region.identifier)")
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+    
+    func locationManager(manager: CLLocationManager!, didExitRegion region: CLRegion!) {
+        println("Exited Region \(region.identifier)")
+    }
 
 }
