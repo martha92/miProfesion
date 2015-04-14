@@ -19,8 +19,8 @@ class ViewControllerDetalle: UIViewController {
         }
         if let arr = myArray {
             // Use your dict here
-            var latitud : NSString? = arr[index!].objectForKey("latitud") as NSString
-            var longitud : NSString?  = arr[index!].objectForKey("longitud") as NSString
+            var latitud : NSString? = arr[index!].objectForKey("latitud") as? NSString
+            var longitud : NSString?  = arr[index!].objectForKey("longitud") as? NSString
             var camera = GMSCameraPosition.cameraWithLatitude(latitud!.doubleValue,
                 longitude:longitud!.doubleValue, zoom: 19)
             var mapView = GMSMapView.mapWithFrame(CGRectZero, camera: camera)
@@ -29,8 +29,8 @@ class ViewControllerDetalle: UIViewController {
             
             var marker = GMSMarker()
             marker.position = CLLocationCoordinate2DMake(latitud!.doubleValue, longitud!.doubleValue)
-            marker.title = arr[index!].objectForKey("nombre") as String
-            marker.snippet = arr[index!].objectForKey("etiqueta") as String
+            marker.title = arr[index!].objectForKey("nombre") as! String
+            marker.snippet = arr[index!].objectForKey("etiqueta") as! String
             marker.map = mapView
             
         }

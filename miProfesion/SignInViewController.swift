@@ -56,7 +56,7 @@ class SignInViewController: UIViewController, GPPSignInDelegate {
     
     func presentMainStoryboard() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("NavigationViewController") as UIViewController
+        let mainViewController = storyboard.instantiateViewControllerWithIdentifier("NavigationViewController") as! UIViewController
         self.presentViewController(mainViewController, animated: true, completion: nil)
     }
 
